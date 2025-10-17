@@ -1,0 +1,60 @@
+*{
+    color:black;
+}
+header{
+    background-color: lightblue;
+    padding: 10px;
+    height: fit-content;
+}
+
+.buttons{
+    color: black; 
+    display: flex;
+    justify-content: right;
+}
+
+.btn {
+    color: black;
+    margin: 0 5px;
+}
+
+
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-content{
+    height: auto;
+    width: auto;
+    position: relative;
+    background-image: url(images/background.jpg);
+    background-size: cover;
+    background-position: center;
+    margin: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+footer{
+    background-color: lightblue;
+    padding: 10px;
+    height: fit-content;
+}
+footer p{
+    text-align: center;
+    font-size: 15px;
+}
+
+footer ul{
+    list-style-type: none;
+    font-size: 15px;
+    text-align: center;
+    padding: 0;
+
+}
+footer a{
+    margin: 0 5px;
+}

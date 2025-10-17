@@ -1,69 +1,46 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Campus Connect</title>
-  <link rel="stylesheet" href="styling.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Web Page</title>
 </head>
 <body>
- <div class="container">
-  <!--Login form-->
-  <div class="form-box login">
-    <form action="#">
-      <h1>Login</h1>
-      <div class="input-box">
-        <input type="text" placeholder="Username" required>
-        <i class="fa-solid fa-user"></i>
-      </div>
-      <div class="input-box">
-        <input type="password" placeholder="Password" required>
-        <i class="fa-solid fa-lock"></i>
-      </div>
-      <div class="forgot-link">
-        <a href="#">Forgot Password?</a>
-      </div>
-      <button type="submit" class="btn">Login</button>
-    </form>
-  </div>
-  <!--Registration Form-->  
-  <div class="form-box register">
-    <form action="#">
-      <h1>Registration</h1>
-      <div class="input-box">
-        <input type="text" placeholder="Username" required>
-        <i class="fa-solid fa-user"></i>
-      </div>
-      <div class="input-box">
-        <input type="email" placeholder="Email" required>
-        <i class="fa-solid fa-envelope"></i>
-      </div>
-      <div class="input-box">
-        <input type="password" placeholder="Password" required>
-        <i class="fa-solid fa-lock"></i>
-      </div>
-      <div class="input-box">
-        <input type="password" placeholder="Confirm password" required>
-        <i class="fa-solid fa-lock"></i>
-      </div>
-      <button type="submit" class="btn">Register</button>
-    </form>
-  </div>
-  <div class="toggle-box">
-  <!--Toggle box Left-->
-    <div class="toggle-pannel toggle-left">
-      <h1>Hello, Welcome!</h1>
-      <p>Don't have an Account?</p>
-      <button class="btn register-btn">Register</button>
+    <header>
+        <div class="center-image">
+            <img src="images/Campusconnect Final.png" class="center-image" alt="University Timetable Manager Logo" width="120" height="100">
+        </div>
+        <div class="buttons">
+            <button type="submit" class="btn" id="loginBtn">Login</button>
+            <button type="submit" class="btn" id="registerBtn">Register</button>
+        </div>
+    </header>
+    <div class="main-content">
+        <h1>NUST Timetable Manager</h1>
+        <p>Welcome to the timetable manager for NUST</p>
+        <p><strong>NOTE: This is only available to NUST students</strong></p>
     </div>
-  <!--Toggle box right-->
-    <div class="toggle-pannel toggle-right">
-      <h1>Welcome Back!</h1>
-      <p>Already have an Account?</p>
-    </div>
-  </div>
- </div>
+    <footer>
+        <img src ="images/Campusconnect Final.png" class="center-image" alt="University Timetable Manager Logo" width="250" height="80">
+        <div class="footer-container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="login/login.html" rel="noreferrer">Login</a></li>
+                    <li><a href="login/login.html" rel="noreferrer">Register</a></li>
+                </ul>
+            </div>
+            <div class="contact-info">
+                <p><strong>Contact Information</strong></p>
+                <ul>
+                    <li>Contact: +264-61-207-2608</li>
+                    <li>Email us: ictsupport@nust.na</li>
+                </ul>
+            </div>
+        </div>
+        <p>&copy; 2024 NUST Timetable Manager. All rights reserved.</p>
+    </footer>
 </body>
 <script src="script.js"></script>
 </html>
+
