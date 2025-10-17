@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Builder - Campus Connect</title>
+    <link rel="stylesheet" href="../login/styling.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/builder.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">Campus Connect</div>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><span></span> Dashboard</a></li>
+                <li><a href="schedule-builder.html" class="active"><span></span> Schedule Builder</a></li>
+                <li><a href="../login/login.html" class="logout"><span></span> Logout</a></li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="main-header">
+                <div class="header-content">
+                    <h1>Schedule Builder - Campus Connect</h1>
+                    <div class="header-actions">
+                        <div class="user-info">
+                            <span>Welcome, <strong id="userName">Student</strong>!</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveSchedule()">
+                             Save Schedule
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div class="builder-container">
+                    <!-- Module Panel -->
+                    <div class="module-panel">
+                        <h3>Available Modules</h3>
+                        
+                        <div class="custom-module">
+                            <h4>Add New Module</h4>
+                            <div class="form-group">
+                                <input type="text" id="moduleCode" placeholder="Module Code (e.g., WAD621S)">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="moduleName" placeholder="Module Name">
+                            </div>
+                            <div class="form-group">
+                                <select id="moduleType">
+                                    <option value="lecture">Lecture</option>
+                                    <option value="tutorial">Tutorial</option>
+                                    <option value="lab">Lab</option>
+                                    <option value="seminar">Seminar</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" onclick="addModule()">Add Module</button>
+                        </div>
+
+                        <div class="module-list-section">
+                            <h4>Your Modules</h4>
+                            <div class="module-list" id="moduleList">
+                                <!-- Modules will be populated by JavaScript -->
+                                <div class="no-modules">No modules added yet. Add your first module above.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timetable Builder -->
+                    <div class="builder-main">
+                        <div class="builder-tools">
+                            <h3>Weekly Timetable Builder</h3>
+                            <div class="toolbar">
+                                <button class="btn btn-outline" onclick="clearSchedule()">🗑️ Clear All</button>
+                                <button class="btn btn-primary" onclick="checkConflicts()">⚡ Check Conflicts</button>
+                                <div class="color-picker">
+                                    <label>Module Color:</label>
+                                    <input type="color" id="moduleColor" value="#0074D9">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timetable -->
+                        <div class="timetable-builder">
+                            <div class="timetable-header-builder">
+                                <div class="time-header">Time</div>
+                                <div class="day-header">Monday</div>
+                                <div class="day-header">Tuesday</div>
+                                <div class="day-header">Wednesday</div>
+                                <div class="day-header">Thursday</div>
+                                <div class="day-header">Friday</div>
+                            </div>
+                            
+                            <div class="timetable-body-builder" id="timetableBuilder">
+                                <!-- Time slots will be generated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Current Schedule Summary -->
+                        <div class="schedule-summary">
+                            <h4>Current Schedule Summary</h4>
+                            <div class="summary-list" id="scheduleSummary">
+                                <!-- Schedule items will be populated here -->
+                            </div>
+                            <div class="summary-stats">
+                                <div class="stat-item">
+                                    <span>Total Modules:</span>
+                                    <strong id="totalModulesCount">0</strong>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Weekly Hours:</span>
+                                    <strong id="weeklyHoursCount">0</strong>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Conflicts:</span>
+                                    <strong id="conflictsCount">0</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conflict Modal -->
+    <div id="conflictModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Schedule Conflicts Detected</h3>
+            <div id="conflictList"></div>
+            <button class="btn btn-primary" onclick="closeConflictModal()">OK</button>
+        </div>
+    </div>
+
+    <script src="js/builder.js"></script>
+</body>
+</html>
