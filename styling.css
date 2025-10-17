@@ -8,38 +8,40 @@
     list-style: none;
 }
 
-body{
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     min-height: 100vh;
-    background: linear-gradient(90deg,#f7f7f7,#b6dee4);
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(90deg, #f7f7f7, #b6dee4);
 }
 
-.container{
-     height: 550px ;
-     width: 850;
-     position: relative;
-     background: #fff;
-     margin: 20px;
-     box-shadow: 0 0 30px rgba(0,0,0,0.2);
-     border-radius: 30px;
-     overflow: hidden;
+.container {
+    height: 550px;
+    width: 850px;
+    position: relative;
+    background: #fff;
+    margin: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    border-radius: 30px;
+    overflow: hidden;
 }
 
-.container h1{
-  font-size: 40 px;
-  margin: -10px 0;   
+.container h1 {
+    font-size: 40px;
+    margin: -10px 0;
 }
-.container p{
+
+.container p {
     font-size: 14.5px;
     margin: 15px 0;
 }
-form{
-    width: 100%
+
+form {
+    width: 100%;
 }
 
-.form-box{
+.form-box {
     position: absolute;
     right: 0;
     width: 50%;
@@ -52,22 +54,32 @@ form{
     padding: 40px;
     z-index: 1;
     transition: 0.6s ease-in-out 1.2s;
-    visibility: 0s 1s;
+    visibility: visible;
 }
-.container.active .form-box{
+
+.container.active .form-box {
     right: 50%;
 }
 
-.form-box.register{
+.form-box.register {
     visibility: hidden;
-
 }
 
-.input-box{
+.input-box {
     position: relative;
     margin: 30px 0;
+}
 
-}
-.input-box input{
+.input-box input {
     width: 100%;
+    padding: 14px 50px 14px 30px;
+    background: hsl(0, 0%, 95%);
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
 }
+
+
