@@ -1,0 +1,468 @@
+:root {
+    --navy: #001f3f;
+    --navy-light: #003366;
+    --white: #ffffff;
+    --light-blue: #0074D9;
+    --light-gray: #f4f4f4;
+    --border-color: #ddd;
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+}
+
+.builder-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    height: 100%;
+}
+
+/* Module Panel */
+.module-panel {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+}
+
+.module-panel h3 {
+    margin: 0 0 1rem 0;
+    color: var(--navy);
+    border-bottom: 2px solid var(--light-blue);
+    padding-bottom: 0.5rem;
+}
+
+.module-list-section {
+    margin-top: 1.5rem;
+}
+
+.module-list-section h4 {
+    margin: 0 0 1rem 0;
+    color: var(--navy);
+    font-size: 1rem;
+}
+
+.module-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.module-item {
+    background: var(--light-gray);
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    cursor: grab;
+    border: 2px dashed transparent;
+    transition: all 0.3s;
+    user-select: none;
+    position: relative;
+}
+
+.module-item:hover {
+    border-color: var(--light-blue);
+    transform: translateY(-2px);
+}
+
+.module-item:active {
+    cursor: grabbing;
+}
+
+.module-item.dragging {
+    opacity: 0.5;
+}
+
+.module-code {
+    font-weight: bold;
+    color: var(--navy);
+    display: block;
+    font-size: 1rem;
+}
+
+.module-name {
+    font-size: 0.8rem;
+    color: var(--navy-light);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.module-type {
+    font-size: 0.7rem;
+    background: var(--navy);
+    color: var(--white);
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.remove-module {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--danger);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-modules {
+    text-align: center;
+    color: var(--navy-light);
+    font-style: italic;
+    padding: 2rem 1rem;
+    background: var(--light-gray);
+    border-radius: 4px;
+}
+
+.custom-module {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.custom-module h4 {
+    margin: 0 0 1rem 0;
+    color: var(--navy);
+    font-size: 1rem;
+}
+
+.custom-module .form-group {
+    margin-bottom: 0.75rem;
+}
+
+.custom-module input, .custom-module select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+/* Builder Main */
+.builder-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.builder-tools {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+}
+
+.builder-tools h3 {
+    margin: 0 0 1rem 0;
+    color: var(--navy);
+}
+
+.toolbar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.color-picker {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.color-picker label {
+    font-size: 0.9rem;
+    color: var(--navy);
+}
+
+.color-picker input {
+    width: 40px;
+    height: 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Timetable Builder - Matching Dashboard Style */
+.timetable-builder {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.timetable-header-builder {
+    display: grid;
+    grid-template-columns: 100px repeat(5, 1fr);
+    background-color: var(--navy);
+    color: var(--white);
+}
+
+.time-header, .day-header {
+    padding: 1rem 0.5rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.timetable-body-builder {
+    display: grid;
+    grid-template-columns: 100px repeat(5, 1fr);
+    gap: 1px;
+    background-color: var(--border-color);
+    border: 1px solid var(--border-color);
+}
+
+.time-slot-builder {
+    background-color: var(--white);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 0.9rem;
+    min-height: 80px;
+    border: none;
+}
+
+.day-slot-builder {
+    background-color: var(--white);
+    padding: 0.5rem;
+    min-height: 80px;
+    position: relative;
+    border: none;
+    transition: all 0.3s;
+}
+
+.day-slot-builder.drop-zone {
+    background-color: #e3f2fd;
+    border: 2px dashed var(--light-blue);
+}
+
+.scheduled-class {
+    background-color: var(--light-blue);
+    color: var(--white);
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+    border-left: 3px solid var(--navy);
+    position: relative;
+}
+
+.scheduled-class:hover {
+    opacity: 0.9;
+}
+
+.scheduled-class .remove-btn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: rgba(255,255,255,0.3);
+    border: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 0.6rem;
+    cursor: pointer;
+    display: none;
+}
+
+.scheduled-class:hover .remove-btn {
+    display: block;
+}
+
+.scheduled-class .module-code {
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--white);
+}
+
+.scheduled-class .module-time {
+    font-size: 0.7rem;
+    opacity: 0.9;
+    display: block;
+}
+
+.scheduled-class .module-type {
+    font-size: 0.6rem;
+    background: rgba(255,255,255,0.3);
+    color: var(--white);
+    margin-top: 0.2rem;
+}
+
+/* Schedule Summary - Matching Dashboard Stats */
+.schedule-summary {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+}
+
+.schedule-summary h4 {
+    margin: 0 0 1rem 0;
+    color: var(--navy);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.summary-list {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--light-gray);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid var(--light-blue);
+}
+
+.summary-item .module-info {
+    flex: 1;
+}
+
+.summary-item .module-info .code {
+    font-weight: bold;
+    color: var(--navy);
+    display: block;
+}
+
+.summary-item .module-info .details {
+    font-size: 0.8rem;
+    color: var(--navy-light);
+}
+
+.summary-item .remove-summary {
+    background: var(--danger);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+    cursor: pointer;
+}
+
+.summary-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 1rem;
+    background: var(--light-gray);
+    border-radius: 4px;
+}
+
+.stat-item span {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--navy-light);
+    margin-bottom: 0.25rem;
+}
+
+.stat-item strong {
+    font-size: 1.2rem;
+    color: var(--navy);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 15% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+.close:hover {
+    color: var(--navy);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .builder-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .module-panel {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .timetable-header-builder,
+    .timetable-body-builder {
+        grid-template-columns: 80px repeat(5, 1fr);
+        font-size: 0.8rem;
+    }
+    
+    .time-slot-builder,
+    .day-slot-builder {
+        min-height: 60px;
+    }
+    
+    .toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .color-picker {
+        margin-left: 0;
+    }
+    
+    .summary-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .builder-tools {
+        padding: 1rem;
+    }
+    
+    .module-panel {
+        padding: 1rem;
+    }
+}
