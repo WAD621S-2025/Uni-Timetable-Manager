@@ -10,7 +10,7 @@ function initializeDashboard() {
     // Check authentication
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (isLoggedIn !== 'true') {
-        window.location.href = 'login.html';
+        window.location.href = '../login/login.html';
         return;
     }
 
