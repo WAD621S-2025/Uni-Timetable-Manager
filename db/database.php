@@ -1,0 +1,34 @@
+-- Users table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Modules table
+CREATE TABLE modules (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    code VARCHAR(20) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    type VARCHAR(20) DEFAULT 'Lecture',
+    color VARCHAR(7) DEFAULT '#0074D9',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Schedule table
+CREATE TABLE schedule (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    module_code VARCHAR(20) NOT NULL,
+    module_name VARCHAR(100) NOT NULL,
+    module_type VARCHAR(20) NOT NULL,
+    day VARCHAR(20) NOT NULL,
+    time VARCHAR(10) NOT NULL,
+    color VARCHAR(7) DEFAULT '#0074D9',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
