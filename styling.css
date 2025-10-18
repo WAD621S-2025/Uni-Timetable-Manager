@@ -118,7 +118,7 @@ body {
   width: 300%;
   height: 100%;
   background: #003366;
-  border-radius: 150px;
+  border-radius: 30px;
   z-index: 2;
   transition: 1.8s ease-in-out;
 }
@@ -173,5 +173,6 @@ body {
     border: 2px solid #fff;
     box-shadow: none;
 }
+
 
 
