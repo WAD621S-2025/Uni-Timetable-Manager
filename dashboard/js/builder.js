@@ -397,7 +397,7 @@ function checkConflicts() {
     if (conflicts.length > 0) {
         showConflicts(conflicts);
     } else {
-        alert('✅ No schedule conflicts detected!');
+        alert(' No schedule conflicts detected!');
     }
 }
 
@@ -440,7 +440,7 @@ function closeConflictModal() {
     document.getElementById('conflictModal').style.display = 'none';
 }
 
-function saveSchedule() {
+async function saveSchedule() {
     const scheduledClasses = document.querySelectorAll('.scheduled-class');
     
     if (scheduledClasses.length === 0) {
@@ -451,26 +451,34 @@ function saveSchedule() {
     const scheduleData = [];
     
     scheduledClasses.forEach(classElement => {
+        const slot = classElement.closest('.day-slot-builder');
         scheduleData.push({
             code: classElement.getAttribute('data-module-code'),
             name: classElement.getAttribute('data-module-name'),
             type: classElement.getAttribute('data-module-type'),
-            time: classElement.getAttribute('data-time'),
-            day: classElement.getAttribute('data-day'),
-            color: classElement.getAttribute('data-color')
+            time: slot.getAttribute('data-time'),
+            day: slot.getAttribute('data-day'),
+            color: classElement.getAttribute('data-color') || '#0074D9'
         });
     });
     
-    // Save to localStorage
-    localStorage.setItem('savedSchedule', JSON.stringify(scheduleData));
-    
-    // Also update the current schedule
-    localStorage.setItem('currentSchedule', JSON.stringify(scheduleData));
-    
-    alert('✅ Schedule saved successfully! Your dashboard will now show your updated schedule.');
-    
-    // Optional: Redirect to dashboard
-    // window.location.href = 'dashboard.html';
+    try {
+        const response = await fetch('schedule-builder.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(scheduleData)
+        });
+        
+        // Also save to localStorage as backup
+        localStorage.setItem('savedSchedule', JSON.stringify(scheduleData));
+        
+        alert(' Schedule saved successfully!');
+    } catch (error) {
+        console.error('Save failed:', error);
+        // Fallback to localStorage
+        localStorage.setItem('savedSchedule', JSON.stringify(scheduleData));
+        alert(' Saved locally (server unavailable)');
+    }
 }
 
 function loadSavedSchedule() {
