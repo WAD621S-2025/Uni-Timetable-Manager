@@ -1,4 +1,6 @@
--- Users table
+CREATE DATABASE campus_connect;
+USE campus_connect;
+
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -7,7 +9,6 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Modules table
 CREATE TABLE modules (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -19,16 +20,15 @@ CREATE TABLE modules (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Schedule table
-CREATE TABLE schedule (
+CREATE TABLE classes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    module_code VARCHAR(20) NOT NULL,
-    module_name VARCHAR(100) NOT NULL,
-    module_type VARCHAR(20) NOT NULL,
-    day VARCHAR(20) NOT NULL,
-    time VARCHAR(10) NOT NULL,
+    module_id INT NOT NULL,
+    class_name VARCHAR(100) NOT NULL,
+    day_of_week ENUM('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday') NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    location VARCHAR(100),
     color VARCHAR(7) DEFAULT '#0074D9',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (module_id) REFERENCES modules(id) ON DELETE CASCADE
 );
+
