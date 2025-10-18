@@ -466,3 +466,16 @@
         padding: 1rem;
     }
 }
+.main-content {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+}
+
+.sidebar {
+  flex: 0 0 250px; /* Fixed width but can shrink */
+}
+
+.content-area {
+  flex: 1;
+  min-width: 300px; /* Prevents content from getting too narrow */
+}
