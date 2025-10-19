@@ -174,5 +174,24 @@ body {
     box-shadow: none;
 }
 
+@media (max-width: 900px) {
+  .container {
+    width: 95%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .form-box {
+    width: 100%;
+    position: relative;
+    right: 0 !important;
+    padding: 20px;
+  }
+
+  .toggle-box {
+    display: none; 
+  }
+}
+
 
 
