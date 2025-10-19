@@ -159,3 +159,19 @@ END$$
 DELIMITER ;
 
 
+--trigger to delete all related schedules and modules for the specific user
+DELIMITER $$
+
+CREATE TRIGGER before_user_delete
+BEFORE DELETE ON users
+FOR EACH ROW
+BEGIN
+    DELETE FROM schedule WHERE user_id = OLD.id;
+    DELETE FROM modules WHERE user_id = OLD.id;
+END$$
+
+DELIMITER ;
+
+
+
+
