@@ -2,15 +2,16 @@
 session_start();
 require_once 'db_connection.php';
 
-if (isset($_POST['register'])) {
+$action = $_POST['action'] ?? '';
+
+if ($action === 'register') {
     $username = $_POST['username'] ?? '';
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
-if ($password !== $confirm_password) {
-        $_SESSION['register_error'] = 'Passwords do not match!';
-        $_SESSION['active_form'] = 'register';
-        header("Location: index.php");
+
+    if ($password !== $confirm_password) {
+        echo json_encode(['success' => false, 'message' => 'Passwords do not match!']);
         exit();
     }
 
@@ -22,9 +23,7 @@ if ($password !== $confirm_password) {
     $checkEmail->store_result();
 
     if ($checkEmail->num_rows > 0) {
-        $_SESSION['register_error'] = 'Email is already registered!';
-        $_SESSION['active_form'] = 'register';
-        header("Location: index.php");
+        echo json_encode(['success' => false, 'message' => 'Email is already registered!']);
         exit();
     }
 
@@ -32,14 +31,34 @@ if ($password !== $confirm_password) {
     $stmt->bind_param("sss", $username, $email, $hashed_password);
 
     if ($stmt->execute()) {
-        $_SESSION['register_success'] = 'Registration successful! You can now login.';
-        $_SESSION['active_form'] = 'login';
+        echo json_encode(['success' => true, 'message' => 'Registration successful! Please login.']);
     } else {
-        $_SESSION['register_error'] = 'Registration failed. Please try again.';
-        $_SESSION['active_form'] = 'register';
+        echo json_encode(['success' => false, 'message' => 'Registration failed. Please try again.']);
     }
-    
-header("Location: index.php");
+    exit();
+}
+
+if ($action === 'login') {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    $stmt = $conn->prepare("SELECT id, password FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($user_id, $hashed_password);
+
+    if ($stmt->num_rows > 0) {
+        $stmt->fetch();
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION['user_id'] = $user_id;
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Incorrect password.']);
+        }
+    } else {
+        echo json_encode(['success' => false, 'message' => 'User not found.']);
+    }
     exit();
 }
 ?>
