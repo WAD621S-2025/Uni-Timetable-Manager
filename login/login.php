@@ -6,65 +6,64 @@
   <title>Campus Connect</title>
   <link rel="stylesheet" href="../login/styling.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<!-- <link rel="dashboard"  href="C:\Users\2025\Documents\GitHub\Uni-Timetable-Manager\dashboard\dashboard.html"> -->  
 </head>
 <body>
  <div class="container">
   <!--Login form-->
   <div class="form-box login">
-    <form action="#">
+    <form action="login_registration.php" method="POST"> 
       <h1>Login</h1>
       <div class="input-box">
-        <input type="text" placeholder="Username" required>
+        <input type="text" name="username" placeholder="Username" required> 
         <i class="fa-solid fa-user"></i>
       </div>
       <div class="input-box">
-        <input type="password" placeholder="Password" required>
+        <input type="password" name="password" placeholder="Password" required> 
         <i class="fa-solid fa-lock"></i>
       </div>
-      <div class="forgot-link">
-        <a href="#">Forgot Password?</a>
-      </div>
-      <button type="submit" class="btn">Login</button>
+      
+      <button type="submit" class="btn" name="login">Login</button> 
     </form>
   </div>
   <!--Registration Form-->  
   <div class="form-box register">
-    <form action="#">
+    <form action="login_registration.php" method="POST"> 
       <h1>Registration</h1>
       <div class="input-box">
-        <input type="text" placeholder="Username" required>
+        <input type="text" name="username" placeholder="Username" required> 
         <i class="fa-solid fa-user"></i>
       </div>
       <div class="input-box">
-        <input type="email" placeholder="Email" required>
+        <input type="email" name="email" placeholder="Email" required> 
         <i class="fa-solid fa-envelope"></i>
       </div>
       <div class="input-box">
-        <input type="password" placeholder="Password" required>
+        <input type="password" name="password" placeholder="Password" required> 
         <i class="fa-solid fa-lock"></i>
       </div>
       <div class="input-box">
-        <input type="password" placeholder="Confirm password" required>
+        <input type="password" name="confirm_password" placeholder="Confirm password" required> 
         <i class="fa-solid fa-lock"></i>
       </div>
-      <button type="submit" class="btn">Register</button>
+      <button type="submit" class="btn" name="register">Register</button> 
     </form>
   </div>
   <div class="toggle-box">
   <!--Toggle box Left-->
-    <div class="toggle-pannel toggle-left">
+    <div class="toggle-panel toggle-left">
       <h1>Hello, Welcome!</h1>
       <p>Don't have an Account?</p>
       <button class="btn register-btn">Register</button>
     </div>
   <!--Toggle box right-->
-    <div class="toggle-pannel toggle-right">
+    <div class="toggle-panel toggle-right">
       <h1>Welcome Back!</h1>
       <p>Already have an Account?</p>
+      <button class="btn login-btn">Login</button>
     </div>
   </div>
  </div>
 </body>
-<script src="script.js"></script>
+<script src="scripting.js"></script>
 </html>
+

@@ -74,7 +74,7 @@ if (isset($_GET['logout'])) {
                         <div class="user-info">
                             <span>Welcome, <strong><?php echo htmlspecialchars($user_name); ?></strong>
                         </div>
-                        <button class="btn btn-primary" onclick="location.href='schedule-builder.html'">
+                        <button class="btn btn-primary" onclick="location.href='schedule-builder.php'">
                             + Create New Schedule
                         </button>
                     </div>
