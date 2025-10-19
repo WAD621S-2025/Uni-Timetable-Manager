@@ -38,9 +38,9 @@ registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = new FormData(registerForm);
-    formData.append('action', 'register'); 
+    formData.append('action', 'register');
 
-    const response = await fetch('login_registration.php', {
+     const response = await fetch('login_registration.php', { 
         method: 'POST',
         body: formData
     });
@@ -49,7 +49,7 @@ registerForm.addEventListener('submit', async (e) => {
 
     if (result.success) {
         alert('Registration successful! Please login.');
-        container.classList.remove('active'); 
+        container.classList.remove('active');
     } else {
         alert(result.message);
     }
