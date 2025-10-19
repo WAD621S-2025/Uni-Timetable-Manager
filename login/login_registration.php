@@ -1,12 +1,13 @@
 <?php
 session_start();
 require_once 'db_connection.php';
+header('Content-Type: application/json');
 
 $action = $_POST['action'] ?? '';
 
 if ($action === 'register') {
-    $username = $_POST['username'] ?? '';
-    $email = $_POST['email'] ?? '';
+    $username = trim($_POST['username'] ?? '');
+    $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
 
@@ -15,22 +16,27 @@ if ($action === 'register') {
         exit();
     }
 
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    if (empty($username) || empty($email) || empty($password)) {
+        echo json_encode(['success' => false, 'message' => 'All fields are required!']);
+        exit();
+    }
 
-    $checkEmail = $conn->prepare("SELECT email FROM users WHERE email = ?");
-    $checkEmail->bind_param("s", $email);
-    $checkEmail->execute();
-    $checkEmail->store_result();
-
-    if ($checkEmail->num_rows > 0) {
+    $stmt = $conn->prepare("SELECT id FROM users WHERE email = :email");
+    $stmt->execute(['email' => $email]);
+    if ($stmt->rowCount() > 0) {
         echo json_encode(['success' => false, 'message' => 'Email is already registered!']);
         exit();
     }
 
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $username, $email, $hashed_password);
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+    $success = $stmt->execute([
+        'username' => $username,
+        'email' => $email,
+        'password' => $hashed_password
+    ]);
 
-    if ($stmt->execute()) {
+    if ($success) {
         echo json_encode(['success' => true, 'message' => 'Registration successful! Please login.']);
     } else {
         echo json_encode(['success' => false, 'message' => 'Registration failed. Please try again.']);
@@ -39,20 +45,23 @@ if ($action === 'register') {
 }
 
 if ($action === 'login') {
-    $username = $_POST['username'] ?? '';
+    $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
 
-    $stmt = $conn->prepare("SELECT id, password FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $stmt->store_result();
-    $stmt->bind_result($user_id, $hashed_password);
+    if (empty($username) || empty($password)) {
+        echo json_encode(['success' => false, 'message' => 'Please enter username and password.']);
+        exit();
+    }
 
-    if ($stmt->num_rows > 0) {
-        $stmt->fetch();
-        if (password_verify($password, $hashed_password)) {
-            $_SESSION['user_id'] = $user_id;
-            echo json_encode(['success' => true]);
+    $stmt = $conn->prepare("SELECT id, password FROM users WHERE username = :username");
+    $stmt->execute(['username' => $username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user) {
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $username;
+            echo json_encode(['success' => true, 'redirect' => '../dashboard/schedule-builder.php']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Incorrect password.']);
         }
@@ -61,4 +70,6 @@ if ($action === 'login') {
     }
     exit();
 }
+
+echo json_encode(['success' => false, 'message' => 'Invalid request.']);
 ?>
