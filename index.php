@@ -12,25 +12,26 @@
             <img src="images/Campusconnect_nobg.png" class="logo" alt="Campus Connect Logo">
         </div>
         <div class="buttons">
-            <button type="submit" class="btn" id="loginBtn">Login</button>
-            <button type="submit" class="btn" id="registerBtn">Register</button>
+            <!-- Link to login page -->
+            <a href="login/indexing.php" class="btn login-btn">Login</a>
+            <a href="login/indexing.php" class="btn register-btn">Register</a>
         </div>
     </header>
-    
+
     <div class="main-content">
         <div class="hero-section">
             <h1>Campus Connect Timetable Manager</h1>
             <p>Welcome to our Timetable Manager</p>
         </div>
-        
-            <div class="academic-impact">
-                <h2>CAMPUS CONNECT'S ACADEMIC IMPACT</h2>
-            </div>
-            <div class="academic-content">
-                <p>CAMPUS CONNECT continues to be a leading educational tool in Namibia, with over 2,000 students registerd across various educational institutions. The website has implemented a new digital timetable system to streamline academic scheduling and improve student experience. This system has reduced scheduling conflicts by 85% and improved resource allocation across various university facilities.</p>
-            </div>
+
+        <div class="academic-impact">
+            <h2>CAMPUS CONNECT'S ACADEMIC IMPACT</h2>
+        </div>
+        <div class="academic-content">
+            <p>CAMPUS CONNECT continues to be a leading educational tool in Namibia, with over 2,000 students registered across various educational institutions. The website has implemented a new digital timetable system to streamline academic scheduling and improve student experience. This system has reduced scheduling conflicts by 85% and improved resource allocation across various university facilities.</p>
+        </div>
     </div>
-    
+
     <footer>
         <div class="footer-container">
             <div>
@@ -39,8 +40,8 @@
             <div class="footer-links">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="login/login.html">Login</a></li>
-                    <li><a href="login/login.html">Register</a></li>
+                    <li><a href="login/indexing.php">Login</a></li>
+                    <li><a href="login/indexing.php">Register</a></li>
                 </ul>
             </div>
             <div class="contact-info">
@@ -55,7 +56,7 @@
             <p>&copy; 2025 Campus Connect Timetable Manager. All rights reserved.</p>
         </div>
     </footer>
-    
-    <script src="script.js"></script>
+
+    <script src="scripting.js" defer></script>
 </body>
 </html>
