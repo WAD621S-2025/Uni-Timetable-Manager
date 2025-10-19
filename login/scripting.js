@@ -9,7 +9,6 @@ loginBtn.addEventListener('click', () => {
     container.classList.remove('active');
 });
 
-
 const loginForm = document.querySelector('.form-box.login form');
 
 loginForm.addEventListener('submit', async (e) => {
@@ -17,6 +16,7 @@ loginForm.addEventListener('submit', async (e) => {
 
     const formData = new FormData(loginForm);
     formData.append('action', 'login'); 
+
     const response = await fetch('login_registration.php', {
         method: 'POST',
         body: formData
@@ -25,12 +25,12 @@ loginForm.addEventListener('submit', async (e) => {
     const result = await response.json();
 
     if (result.success) {
+        
         window.location.href = 'dashboard/dashboard.php'; 
     } else {
         alert(result.message); 
     }
 });
-
 
 const registerForm = document.querySelector('.form-box.register form');
 
@@ -40,7 +40,7 @@ registerForm.addEventListener('submit', async (e) => {
     const formData = new FormData(registerForm);
     formData.append('action', 'register');
 
-     const response = await fetch('login_registration.php', { 
+    const response = await fetch('login_registration.php', { 
         method: 'POST',
         body: formData
     });
@@ -49,7 +49,7 @@ registerForm.addEventListener('submit', async (e) => {
 
     if (result.success) {
         alert('Registration successful! Please login.');
-        container.classList.remove('active');
+        container.classList.remove('active'); 
     } else {
         alert(result.message);
     }
