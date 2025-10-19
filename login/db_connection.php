@@ -1,7 +1,7 @@
 <?php
 
 $host = "localhost";
-$dbname = "campus_connect";
+$dbname = "campus-connect";
 $username = "root";
 $password = ""; 
 $conn = new mysqli($host, $username, $password, $dbname);
