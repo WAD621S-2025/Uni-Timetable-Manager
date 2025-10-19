@@ -1,0 +1,61 @@
+
+const container = document.querySelector('.container');
+const registerBtn = document.querySelector('.register-btn');
+const loginBtn = document.querySelector('.login-btn');
+
+if (container && registerBtn && loginBtn) {
+    
+    registerBtn.addEventListener('click', () => {
+        container.classList.add('active');
+    });
+    loginBtn.addEventListener('click', () => {
+        container.classList.remove('active');
+    });
+
+    
+    const loginForm = document.querySelector('.form-box.login form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(loginForm);
+            formData.append('action', 'login');
+
+            const response = await fetch('login/login_registration.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                window.location.href = 'dashboard/dashboard.php';
+            } else {
+                alert(result.message);
+            }
+        });
+    }
+
+   
+    const registerForm = document.querySelector('.form-box.register form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(registerForm);
+            formData.append('action', 'register');
+
+            const response = await fetch('login/login_registration.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert('Registration successful! Please login.');
+                container.classList.remove('active');
+            } else {
+                alert(result.message);
+            }
+        });
+    }
+}
