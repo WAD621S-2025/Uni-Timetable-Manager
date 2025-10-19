@@ -2,12 +2,13 @@ const container = document.querySelector('.container');
 const registerBtn = document.querySelector('.register-btn');
 const loginBtn = document.querySelector('.login-btn');
 
-registerBtn.addEventListener('click',()=>{
-  container.classList.add('active');
-})
-loginBtn.addEventListener('click',()=>{
-  container.classList.add('active');
-})
+registerBtn.addEventListener('click', () => {
+    container.classList.add('active');
+});
+loginBtn.addEventListener('click', () => {
+    container.classList.remove('active');
+});
+
 
 const loginForm = document.querySelector('.form-box.login form');
 
@@ -15,8 +16,8 @@ loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = new FormData(loginForm);
-
-    const response = await fetch('login.php', {
+    formData.append('action', 'login'); 
+    const response = await fetch('login_registration.php', {
         method: 'POST',
         body: formData
     });
@@ -29,14 +30,17 @@ loginForm.addEventListener('submit', async (e) => {
         alert(result.message); 
     }
 });
+
+
 const registerForm = document.querySelector('.form-box.register form');
 
 registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = new FormData(registerForm);
+    formData.append('action', 'register'); 
 
-    const response = await fetch('register.php', {
+    const response = await fetch('login_registration.php', {
         method: 'POST',
         body: formData
     });
@@ -45,9 +49,8 @@ registerForm.addEventListener('submit', async (e) => {
 
     if (result.success) {
         alert('Registration successful! Please login.');
-        container.classList.remove('active'); // switch to login form
+        container.classList.remove('active'); 
     } else {
-        alert(result.message); // show error
+        alert(result.message);
     }
 });
-
